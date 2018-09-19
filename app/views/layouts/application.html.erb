@@ -14,20 +14,20 @@
 
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application'%>
   </head>
 
+	
+	
   <body>
-	
-	
     <% if current_user %>
       <!-- current_user will return true if a user is logged in -->
       <%= "Logged in as #{current_user.email}" %> | <%= link_to 'Home', root_path %> | <%= link_to 'Log Out', logout_path, method: :delete %>
     <% else %>
       <!-- not logged in -->
-      <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %>
+      <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %> | <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
     <% end %>
-    <hr>
+                   <hr>
         <%# ----- Showing flash alert: ----- %>
            <% if flash.present? %>
                   <% flash.each do |name, msg| %>
@@ -37,6 +37,24 @@
                   <% end %>
             <% end %>
           <%# ----- end of flash lines ----- %>
+
+          <%# ----- current_user infor ----- %>
+            <% if current_user %>
+            <% current_user.attributes.each do |k, v| %>
+              <b><%= k %>:</b> <%= v %> <br>
+            <% end %>
+            <% current_user.authentications.each do |e|  %>
+            <% e.attributes.each do |k,v| %>
+              <b><%= k %>:</b> <%= v %> <br>
+              <% end %>
+            <% end %>
+
+          <% end %>
+          <%# ----- end current user attributes ----- %>
+<% if current_user  %>
+    || <%= link_to "Delete Yourself" , current_user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
     
 
     <%= yield %>
