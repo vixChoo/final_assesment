@@ -2,11 +2,14 @@ require 'nokogiri'
 require 'watir'
 require 'httparty'
 
+# require 'byebug'
 
 class SearchController < ApplicationController
 
   def index
-     browser = Watir::Browser.new(:chrome)
+    #  browser = Watir::Browser.new(:chrome)
+     browser = Watir::Browser.new :chrome, headless: true
+
      browser.goto("http://jobs.monster.com.my/")
      parsed_page = Nokogiri::HTML(browser.html)
      
@@ -15,13 +18,13 @@ class SearchController < ApplicationController
 	    #---- grab each job -------#
       jobs.each do |job|
         detail = {
-          title: job.css("table.results a").text,
-          link: job.css("table.results a").attributes["href"].value,
+          title: job.css("a").text,
+          link: job.css("a").first.attributes["href"].value,
           date:  job.css("span.txt_purple").text,
           company_name: job.css("span.txt_grey3").text,
           location: job.css("span.txt_green").text,
-          content: job.css("table.results div").text
-
+          delete: job.css("div span").remove,
+          content: job.css("div").text          
         }
         jobs_array << detail
       end
