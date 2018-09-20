@@ -45,6 +45,15 @@ gem 'omniauth-facebook', '~> 5.0'
 gem 'omniauth-linkedin', '~> 0.2.0'
 gem 'omniauth-github', '~> 1.3'
 
+
+### scraping tools ###
+gem 'httparty' 
+gem 'nokogiri'
+gem 'watir'
+gem 'capybara', '>= 2.15'
+gem 'selenium-webdriver'
+gem 'chromedriver-helper'
+
 # Reduces boot times through caching; required in con`fig`/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -52,6 +61,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails', '~> 0.3.6'
+  gem 'meta_request'
 end
 
 group :development do
@@ -65,10 +75,10 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  # gem 'capybara', '>= 2.15'
+  # gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
