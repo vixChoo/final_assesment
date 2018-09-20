@@ -1,6 +1,6 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
     provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
-     :scope => 'email', info_fields: 'email, name'
+     :scope => 'email', info_fields: 'email, name,link'
     
     provider :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_APP_SECRET'],
     scope: 'profile', image_aspect_ratio: 'square', image_size: 48, access_type: 'online'
