@@ -1,29 +1,45 @@
+require 'byebug'
 class User < ApplicationRecord
-	has_secure_password
-	# Verify that email field is not blank and that it doesn't already exist in the db (prevents duplicates):
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
-	# Association
-	has_many :authentications, dependent: :destroy
+    # class << self
+    #     def from_omniauth(auth_hash)
+    #         user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+    #         user.name = auth_hash['info']['name']
+    #         user.location = auth_hash['info']['location']
+    #         user.image_url = auth_hash['info']['image']
+    #         user.url = auth_hash['info']['urls'][user.provider.capitalize]
+    #         user.save!
+    #         user
+    #         # user.password = auth_hash['info']['email']
+    #     end
+    # end 
+    class << self
+        def from_omniauth(auth_hash)
+            byebug
+            user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+            user.name = auth_hash['info']['name']
+            user.email = auth_hash['info']['email']
+            user.location = auth_hash['info']['location']
+            user.image_url = auth_hash['info']['image']
+            unless user.provider == 'facebook'
+            user.url = get_social_url_for user.provider, auth_hash['info']['urls']
+            end
+            user.save!
+            user
+            # user.location = get_social_location_for user.provider, auth_hash['info']['location'] FOR linkedin doestnt worked
+        end
+            
+            
+            
 
-	
+  private
 
-	def self.create_with_auth_and_hash(authentication, auth_hash)
-	user = self.create!(
-		name: auth_hash["info"]["name"],
-		email: auth_hash["info"]["email"],
-		password: SecureRandom.hex(10)
-	)
-	user.authentications << authentication
-	return user
-	end
-
-	# grab google to access google for user data
-	def google_token
-		x = self.authentications.find_by(provider: 'google_oauth2')
-		return x.token unless x.nil?
-	end
-
+    def get_social_url_for(provider, urls_hash)
+            case provider
+            when 'linkedin'
+                urls_hash['public_profile']
+            else
+                urls_hash[provider.capitalize]
+            end
+        end
+    end
 end
-

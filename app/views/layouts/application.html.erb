@@ -26,6 +26,7 @@
     <% else %>
       <!-- not logged in -->
       <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %> | <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
+      | <%= link_to 'Sign in with Facebook', '/auth/facebook' %> || <%= link_to 'LinkedIn', '/auth/linkedin' %>
     <% end %>
                    <hr>
         <%# ----- Showing flash alert: ----- %>
@@ -43,20 +44,12 @@
             <% current_user.attributes.each do |k, v| %>
               <b><%= k %>:</b> <%= v %> <br>
             <% end %>
-            <% current_user.authentications.each do |e|  %>
-            <% e.attributes.each do |k,v| %>
-              <b><%= k %>:</b> <%= v %> <br>
-              <% end %>
-            <% end %>
-
-          <% end %>
-          <%# ----- end current user attributes ----- %>
-<% if current_user  %>
-    || <%= link_to "Delete Yourself" , current_user, method: :delete,
+            || <%= link_to "Delete Yourself" , current_user, method: :delete,
                                   data: { confirm: "You sure?" } %>
-  <% end %>
-    
+            <% end %>
+          <%# ----- end current user attributes ----- %>
 
+      
     <%= yield %>
   </body>
 </html>
