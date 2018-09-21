@@ -1,4 +1,4 @@
-require 'byebug'
+# require 'byebug'
 class User < ApplicationRecord
     # class << self
     #     def from_omniauth(auth_hash)
@@ -14,7 +14,6 @@ class User < ApplicationRecord
     # end 
     class << self
         def from_omniauth(auth_hash)
-            byebug
             user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
             user.name = auth_hash['info']['name']
             user.email = auth_hash['info']['email']

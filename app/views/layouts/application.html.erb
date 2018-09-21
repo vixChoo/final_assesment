@@ -40,11 +40,11 @@
           <%# ----- end of flash lines ----- %>
 
           <%# ----- current_user infor ----- %>
-            <% if !current_user %>
+            <% if current_user %>
             <% current_user.attributes.each do |k, v| %>
-              <b><%= k %>:</b> <%= v %> <br>
+              <b><% k %>:</b> <% v %> <br>
             <% end %>
-            || <%= link_to "Delete Yourself" , current_user, method: :delete,
+            || <% link_to "Delete Yourself" , current_user, method: :delete,
                                   data: { confirm: "You sure?" } %>
             <% end %>
           <%# ----- end current user attributes ----- %>
