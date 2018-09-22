@@ -12,6 +12,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <%# ----- end ----- %>
 
+        <%# ----- Bootstrap link ----- %>
+              <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <%# ----- end ----- %>
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application'%>
@@ -22,12 +26,18 @@
   <body>
     <% if current_user %>
       <!-- current_user will return true if a user is logged in -->
-      <%= "Logged in as #{current_user.email}" %> | <%= link_to 'Home', root_path %> | <%= link_to 'Log Out', logout_path, method: :delete %>
+      <%= "Logged in as #{current_user.name}" %> | <%= link_to 'Home', root_path %> | <%= link_to 'Log Out', logout_path, method: :delete %> || <%= link_to 'profile', user_profile_path %>
     <% else %>
       <!-- not logged in -->
       <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %> | <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
       | <%= link_to 'Sign in with Facebook', '/auth/facebook' %> || <%= link_to 'LinkedIn', '/auth/linkedin' %>
     <% end %>
+     <%= form_with url: search_path,method: :get,local:true,class:"nav-link" do |f| %>
+                <%= f.text_field :searchword ,placeholder:"Search",class: "form-control",id:"form-control" %>
+                <% f.button :submit,style:"border: none;background: transparent;color:#ea4c4c;" do %>
+                      <i class="fas fa-search"></i>
+            <% end %>
+    <% end %>   
                    <hr>
         <%# ----- Showing flash alert: ----- %>
            <% if flash.present? %>
@@ -39,17 +49,9 @@
             <% end %>
           <%# ----- end of flash lines ----- %>
 
-          <%# ----- current_user infor ----- %>
-            <% if current_user %>
-            <% current_user.attributes.each do |k, v| %>
-              <b><% k %>:</b> <% v %> <br>
-            <% end %>
-            || <% link_to "Delete Yourself" , current_user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-            <% end %>
-          <%# ----- end current user attributes ----- %>
-
       
     <%= yield %>
   </body>
 </html>
+         
+

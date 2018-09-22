@@ -33,5 +33,41 @@ class SearchController < ApplicationController
       ###### close browser ####
 	    browser.close
     end  #### close index ####
+    
+    def show
+
+      if params[:searchword]
+        security_name = params[:searchword]
+      else
+        security_name = "engineer"
+      end
+			##### automated browsing ######
+      browser = Watir::Browser.new(:chrome)
+      browser.goto("https://www.monster.com.my/lala-jobs.html")
+      browser.text_field(id:"fts_header").set security_name
+      browser.send_keys :enter
+	    sleep 1
+      parsed_page = Nokogiri::HTML(browser.html)
       
+     jobs = parsed_page.css("div#hightlightedKeyword ul.ullilist li")[0..20] #102jobs perpages
+     jobs_array = []
+
+	    #---- grab each job -------#
+      jobs.each do |job|
+        detail = {
+          title: job.css("div.jtitle").text
+        }
+        
+        jobs_array << detail
+      end
+      @jobs = jobs_array
+
+      ###### close browser ####
+	    browser.close
+
+    end  #### close show ####
+
+
+
+
 end

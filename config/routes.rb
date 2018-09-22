@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 	root to: 'search#index'
 	
 	resources :users
+
+	get 'search' => 'search#show' , :as => "search"
 	
+	get 'users/profile' => 'users#show' , :as => "user_profile"
+
 	# omniauth login
 	get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 	
