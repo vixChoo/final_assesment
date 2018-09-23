@@ -49,11 +49,18 @@
             <% end %>
           <%# ----- end of flash lines ----- %>
 
+<% if current_page?(user_profile_path)  %>
+        <%= render partial:'edit'%>
+<% end %>
+
       
     <%= yield %>
 
-
+<% unless current_page?(user_profile_path)  %>
       <%= render partial: 'layouts/chatbot' %>
+<% end %>
+  
+  
 
   </body>
 </html>

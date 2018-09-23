@@ -7,21 +7,29 @@ class UsersController < ApplicationController
 
   def show
     # authorize
+    @user = current_user
   end
-
+    
+      
+        
+       
+     
+  
   def edit
-    find_user
-    respond_to do |format|    
-       if @listing.update(user_params)
-        format.html {render :show,info: 'Profile has been updated' }
-        format.js
+    @user = current_user
+      respond_to do |format|    
+       if @user.update(user_params)
+        flash[:info] = 'Profile has been updated'
+        format.html {render :show}
+        format.js  {render :show}
       else
-        format.html { render :edit,danger: 'Profile update failed' }
+        flash[:danger] = 'Profile update failed!' 
+        format.html { render :show}
         format.js
       end
     end
   end
-     
+      
 
   def create
     @user = User.new(user_params)
@@ -50,9 +58,9 @@ class UsersController < ApplicationController
 
 private
 
-  def find_user
-    @user = User.find(params[:id])
-  end
+  # def find_user
+  #   @user = User.find(params[:id])
+  # end
 
 
   def user_params
