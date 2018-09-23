@@ -48,14 +48,20 @@
                   </div>
                 </div>
               </div>
-                      <%# ----- current_user infor ----- %>
-                        <% if current_user %>
-                        <% current_user.attributes.each do |k, v| %>
-                        <b><%= k %>:</b> <%= v %> <br>
-                        <% end %>
-                        || <%= link_to "Delete Yourself" , current_user, method: :delete,
-                                            data: { confirm: "You sure?" } %>
-                        <% end %>
+
+
+                      <%# ----- Edit ----- %>
+                      <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
+                                Edit profile
+                              </button>
+
+                          <%= render 'edit',remote:true %>
+                            
+                      <%# ----- end current user attributes ----- %>
+
+                      <%# ----- current_user ajax info ----- %>
+                          <%= render partial:'profile',remote:true %>
                       <%# ----- end current user attributes ----- %>
                           
 

@@ -6,11 +6,11 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :avatar
       t.string :location
-      t.string :image_url
       t.string :url
       t.string :provider
       t.string :uid
       t.timestamps
+    
     end
     add_index :users, :provider
     add_index :users, :uid

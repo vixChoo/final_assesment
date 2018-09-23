@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   before_action :authorize, only: [:show]
+   before_action :authorize, only: [:show,:edit]
   
   def new
     @user = User.new
@@ -8,6 +8,20 @@ class UsersController < ApplicationController
   def show
     # authorize
   end
+
+  def edit
+    find_user
+    respond_to do |format|    
+       if @listing.update(user_params)
+        format.html {render :show,info: 'Profile has been updated' }
+        format.js
+      else
+        format.html { render :edit,danger: 'Profile update failed' }
+        format.js
+      end
+    end
+  end
+     
 
   def create
     @user = User.new(user_params)
@@ -36,10 +50,15 @@ class UsersController < ApplicationController
 
 private
 
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+
   def user_params
     # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
     # that can be submitted by a form to the user model #=> require(:user)
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation,:avatar)
   end
   
 end
