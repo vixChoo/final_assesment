@@ -1,14 +1,14 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-        <% @jobs.each do |job| %>
-            <div class="card m-1 p-2 pb-0 mb-0">
-                 <strong><%= job.fetch(:title) %></strong>
-            </div>
-           <% end %>
+        <div class="col-md-12" id="search_result">
+             <%= render(partial: 'show') %>
         </div>
     </div>
 </div>
-              
+         
+
+
+                    
+                    
 
                 

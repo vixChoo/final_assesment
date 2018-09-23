@@ -7,6 +7,7 @@ require 'httparty'
 class SearchController < ApplicationController
 
   def index
+  
     #  browser = Watir::Browser.new(:chrome)
      browser = Watir::Browser.new :chrome, headless: true
 
@@ -33,20 +34,28 @@ class SearchController < ApplicationController
       ###### close browser ####
 	    browser.close
     end  #### close index ####
+
+
     
     def show
 
       if params[:searchword]
         security_name = params[:searchword]
+          # Autorefresh Ajax#
+          respond_to do |format|
+            format.html
+            format.js
+          end
+    
       else
         security_name = "engineer"
       end
+      
 			##### automated browsing ######
-      browser = Watir::Browser.new(:chrome)
-      browser.goto("https://www.monster.com.my/lala-jobs.html")
-      browser.text_field(id:"fts_header").set security_name
-      browser.send_keys :enter
-	    sleep 1
+      # browser = Watir::Browser.new(:chrome)
+      browser = Watir::Browser.new :chrome, headless: true
+
+      browser.goto("https://www.monster.com.my/#{security_name}-jobs.html")
       parsed_page = Nokogiri::HTML(browser.html)
       
      jobs = parsed_page.css("div#hightlightedKeyword ul.ullilist li")[0..20] #102jobs perpages
@@ -55,17 +64,27 @@ class SearchController < ApplicationController
 	    #---- grab each job -------#
       jobs.each do |job|
         detail = {
-          title: job.css("div.jtitle").text
+          title: job.css("div.jtitle").text,
+          link:job.css("div.jtitle a").attribute("href").value,
+          company_name: job.css("div.jtxt a").text,
+          company_link: job.css("div.jtxt a").attribute("href").value,
+          keyskill:job.css("div.jtxt:nth-child(5)").text,
+          location: job.css("div.jtxt:nth-child(7)").text,
+          date: job.css("div.job_optitem")[1].text,
+          content:job.css("div.jtxt:nth-child(6)").text
         }
-        
+
         jobs_array << detail
-      end
-      @jobs = jobs_array
+        end
+        @jobs = jobs_array
+  
+        ###### close browser ####
+        browser.close
+  
+      end  #### close show ####
 
-      ###### close browser ####
-	    browser.close
 
-    end  #### close show ####
+        
 
 
 
