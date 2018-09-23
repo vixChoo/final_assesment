@@ -54,6 +54,12 @@ gem 'capybara', '>= 2.15'
 gem 'selenium-webdriver'
 gem 'chromedriver-helper'
 
+### For avatar ###
+gem 'carrierwave', '~> 1.2', '>= 1.2.3'
+
+### For avatar API AWS ###
+gem 'fog-aws', '~> 3.3'
+
 # Reduces boot times through caching; required in con`fig`/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
