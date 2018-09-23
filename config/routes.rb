@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 	get 'search' => 'search#show' , :as => "search"
 	
 	get 'users/profile' => 'users#show' , :as => "user_profile"
+	patch '/users/profile/edit' => 'users#edit' , :as => "user_edit"
 
 	# omniauth login
 	get "/auth/:provider/callback" => "sessions#create_from_omniauth"

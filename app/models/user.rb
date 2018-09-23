@@ -1,5 +1,13 @@
 # require 'byebug'
 class User < ApplicationRecord
+    has_secure_password
+    mount_uploader :avatar, AvatarUploader
+
+    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+    validates :name, presence: true
+    validates :email, format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }, allow_blank: true
+
     # class << self
     #     def from_omniauth(auth_hash)
     #         user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
@@ -19,6 +27,7 @@ class User < ApplicationRecord
             user.email = auth_hash['info']['email']
             user.location = auth_hash['info']['location']
             user.avatar = auth_hash['info']['image']
+            user.password = SecureRandom.hex(10)
             unless user.provider == 'facebook'
             user.url = get_social_url_for user.provider, auth_hash['info']['urls']
             end

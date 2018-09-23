@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:login][:password]) 
       # Save the user.id in that user's session cookie:
       session[:user_id] = user.id.to_s
-      redirect_to root_path, success: 'Successfully logged in!'
+      redirect_to user_profile_path, success: 'Successfully logged in!'
     else
       # if email or password incorrect, re-render login page:
       flash[:danger] = "Incorrect email or password, try again."
@@ -35,11 +35,12 @@ class SessionsController < ApplicationController
         @user = User.from_omniauth(request.env['omniauth.auth'])
         sign_in(@user)
         flash[:success] = "Welcome, #{@user.name}!"
+        redirect_to user_profile_path
       rescue
         flash[:warning] = "There was an error while trying to authenticate you..."
+        redirect_to root_path
 
         end
-       redirect_to root_path
   end
   
   # def create_from_omniauth
@@ -61,11 +62,7 @@ class SessionsController < ApplicationController
   #       session[:user_id] = user.id
   #   end
 
-       
-
-     def auth_failure
-      redirect_to root_path
-    end
+      
 
 end
   

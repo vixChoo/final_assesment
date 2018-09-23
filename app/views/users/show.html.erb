@@ -50,25 +50,28 @@
               </div>
 
 
-                      <%# ----- Edit ----- %>
-                      <!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
-                                Edit profile
-                              </button>
 
-                          <%= render 'edit',remote:true %>
-                            
-                      <%# ----- end current user attributes ----- %>
+                     
+                      <!-- Edit Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-remote="<%= user_edit_path(@user) %> #modal-edit-fields">Edit Profile</button>
 
+
+
+                       
                       <%# ----- current_user ajax info ----- %>
+                        <div id="profile">
                           <%= render partial:'profile',remote:true %>
+                        </div>
                       <%# ----- end current user attributes ----- %>
-                          
 
                   </div> <!-- container -->
           </div>  <!-- main -->
       </div>  <!-- profile-content -->
+                            
+    
 </body>
+
+                          
 
 
                      
@@ -95,7 +98,16 @@ p {
 
 </style>           
 
+<script>
 
-               
-                   
-   
+ $('#button').submit(function(e) {
+    e.preventDefault();
+    // Coding
+    $('#exampleModal').modal('hide'); //or  $('#IDModal').modal('hide');
+    return false;
+});
+
+</script>
+
+
+    
