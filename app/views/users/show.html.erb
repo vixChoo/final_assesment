@@ -14,7 +14,11 @@
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
               <div class="avatar">
+              <% if current_user.avatar.present? %>
+                <%= image_tag "#{current_user.avatar.url}" , alt:"Circle Image" ,class:"img-raised rounded-circle img-fluid" %>
+                <% else %>
                 <%= image_tag "kendall.jpg" , alt:"Circle Image" ,class:"img-raised rounded-circle img-fluid" %>
+              <% end %>
               </div>
               <div class="name">
                 <h3 class="title"><%= current_user.name%></h3>
@@ -53,13 +57,22 @@
 
                      
                       <!-- Edit Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-remote="<%= user_edit_path(@user) %> #modal-edit-fields">Edit Profile</button>
+          <div class="row">
+            <div class="col-sm-10">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-remote="<%= user_edit_path(@user) %> #modal-edit-fields">Edit Profile</button>
+            </div>
+            <div class="col-sm-2 float-right">
+             <%= button_to "Delete Yourself" , current_user, method: :delete,
+                        data: { confirm: "You sure?" },class:"btn btn-danger" %>
+            </div>
+          </div>
 
 
 
                        
+                     
                       <%# ----- current_user ajax info ----- %>
-                        <div id="profile">
+                      <div class="text-muted" id="profile">
                           <%= render partial:'profile',remote:true %>
                         </div>
                       <%# ----- end current user attributes ----- %>

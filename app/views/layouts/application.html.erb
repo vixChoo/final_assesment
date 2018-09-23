@@ -43,11 +43,9 @@
       <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %> | <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
       | <%= link_to 'Sign in with Facebook', '/auth/facebook' %> || <%= link_to 'LinkedIn', '/auth/linkedin' %>
     <% end %>
-     <%= form_with url: search_path,method: :get,local:true,class:"nav-link" do |f| %>
-                <%= f.text_field :searchword ,placeholder:"Search",class: "form-control",id:"form-control" %>
-                <% f.button :submit,style:"border: none;background: transparent;color:#ea4c4c;" do %>
-                      <i class="fas fa-search"></i>
-            <% end %>
+     <%= form_with url: search_path,method: :get,local:true do |f| %>
+                <%= f.text_field :searchword ,placeholder:"Search",style:"margin-left:90px;margin-right:90px;" ,class:"form-control"%>
+            <% f.button :submit,style:"border: none;background: transparent;color:#ea4c4c;" %>
     <% end %>   
                    <hr>
         <%# ----- Showing flash alert: ----- %>
