@@ -44,7 +44,7 @@
       | <%= link_to 'Sign in with Facebook', '/auth/facebook' %> || <%= link_to 'LinkedIn', '/auth/linkedin' %>
     <% end %>
      <%= form_with url: search_path,method: :get,local:true do |f| %>
-                <%= f.text_field :searchword ,placeholder:"Search",style:"margin-left:90px;margin-right:90px;" ,class:"form-control"%>
+                <%= f.text_field :searchword ,placeholder:"Search",style:"margin-left: 40vw;width: auto;" ,class:"form-control"%>
             <% f.button :submit,style:"border: none;background: transparent;color:#ea4c4c;" %>
     <% end %>   
                    <hr>
