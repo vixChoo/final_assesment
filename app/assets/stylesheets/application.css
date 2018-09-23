@@ -22,6 +22,10 @@ a:hover {
 	text-decoration: none;
 }
 
+  /*this will hide the form to refresh company prices*/
+/* #hiddenForm {
+     visibility: hidden;
+} */
        
 .profile-page.page-header {
   height: 380px;
