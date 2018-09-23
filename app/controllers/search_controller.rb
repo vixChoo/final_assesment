@@ -18,8 +18,8 @@ class SearchController < ApplicationController
 		  if (chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil))
 		    opts.merge!( options: {binary: chrome_bin})
 		  end 
-		security_name = security_name
-			@browser = Watir::Browser.new :chrome, opts 
+       
+    browser = Watir::Browser.new :chrome, opts 
 
      browser.goto("http://jobs.monster.com.my/")
      parsed_page = Nokogiri::HTML(browser.html)
@@ -72,9 +72,10 @@ class SearchController < ApplicationController
 		  if (chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil))
 		    opts.merge!( options: {binary: chrome_bin})
 		  end 
-		security_name = security_name
-			@browser = Watir::Browser.new :chrome, opts 
-
+      
+      security_name = security_name
+    
+    browser = Watir::Browser.new :chrome, opts 
       browser.goto("https://www.monster.com.my/#{security_name}-jobs.html")
       parsed_page = Nokogiri::HTML(browser.html)
       
