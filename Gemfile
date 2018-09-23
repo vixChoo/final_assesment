@@ -60,6 +60,8 @@ gem 'mini_magick', '~> 4.8'
 ### For avatar API AWS ###
 gem 'fog-aws', '~> 3.3'
 
+gem 'simple_form', '~> 4.0', '>= 4.0.1'
+
 # Reduces boot times through caching; required in con`fig`/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

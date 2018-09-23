@@ -1,6 +1,6 @@
 
 
-    
+<div id="modal-edit-fields">
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -12,52 +12,49 @@
       </div>
       <div class="modal-body">
       
-        <%= form_for @user ,url: user_edit_path ,remote:true do |f| %>
-        <% if @user.errors.any? %>
-                    <div class="error_messages">
-                    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-                    <ul>
-                    <% @user.errors.full_messages.each do |msg| %>
-                        <li><%= msg %></li>
-                    <% end %>
-                    </ul>
-                    </div>
-        <% end %>
+    <%= simple_form_for( @user ,url: user_edit_path, id:"hide" ,remote:true,
+    wrapper_mappings: {
+    boolean:       :custom_boolean,
+    check_boxes:   :custom_collection,
+    date:          :custom_multi_select,
+    datetime:      :custom_multi_select,
+    file:          :custom_file,
+    radio_buttons: :custom_collection,
+    range:         :custom_range,
+    time:          :custom_multi_select,
+    select:        :custom_multi_select
+        }) do |f| %>
+    
         
-          <div class="form-group">
-            <%= f.label :name %><br />
-            <%= f.text_field :name , class:"form-control"%>
-          </div>
+            <%= f.input :name , class:"form-control"%>
+           
        
-          <div class="form-group">
-            <%= f.label :email %>
-            <%= f.text_field :email , class:"form-control"%>
-          </div>
-      </div>
+            <%= f.input :email , class:"form-control"%>
+             
   
-        <div class="form-group">
-            <%= f.label :avatar %>
-            <%= f.file_field :avatar %>
-      </div>
+        
+             <%= f.input :avatar, as: :file %>
+  
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <%= f.submit "Save changes",class:"btn btn-primary" , id:"hide"%>
+        <%= f.submit "Save changes",class:"btn btn-primary",id:"hide" %>
       <% end %>
       </div>
     </div>
   </div>
 </div>
+</div>
 <script>
-$(document).ready(function(){
-   
- $('#hide').submit(function(e) {
+
+$('#hide').submit(function(e) {
     e.preventDefault();
+    // Coding
+    this.modal('hide');
+    $('#exampleModal').modal('hide'); //or  $('#IDModal').modal('hide');
+    return false;
    
-    $('#exampleModal').modal('hide'); 
-    return true;
-    });
 });
-   
+ 
 
 </script>

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
        if @user.update(user_params)
         flash[:info] = 'Profile has been updated'
         format.html {render :show}
-        format.js  {render :show}
+        format.js  {render :show,info: 'Profile has been updated'}
       else
         flash[:danger] = 'Profile update failed!' 
         format.html { render :show}
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       # If user saves in the db successfully:
       flash[:success] = "Account created successfully!"
       session[:user_id] = @user.id  
-      redirect_to root_path
+      redirect_to user_profile_path
     else
       # If user fails model validation - probably a bad password or duplicate email:
        flash[:danger] = "Oops, couldn't create account. Please make sure you are using a valid email and password and try again."
@@ -68,5 +68,8 @@ private
     # that can be submitted by a form to the user model #=> require(:user)
     params.require(:user).permit(:name, :email, :password, :password_confirmation,:avatar)
   end
+
+ 
+    
   
 end
