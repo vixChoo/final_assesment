@@ -1,0 +1,101 @@
+               
+
+
+        
+
+<body class="profile-page sidebar-collapse">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('https://images.unsplash.com/photo-1470219556762-1771e7f9427d?ixlib=rb-0.3.5&s=9028f438c7c982f8f47c33a92b78439a&auto=format&fit=crop&w=889&q=80');"></div>
+    <div class="profile-content">
+      <div class="main main-raised">
+
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
+              <div class="avatar">
+                <%= image_tag "kendall.jpg" , alt:"Circle Image" ,class:"img-raised rounded-circle img-fluid" %>
+              </div>
+              <div class="name">
+                <h3 class="title"><%= current_user.name%></h3>
+                <h6 class="text-uppercase">Developer</h6>
+                <a href="https://www.facebook.com/" class="btn btn-just-icon btn-link btn-dribbble"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/" class="btn btn-just-icon btn-link btn-twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://github.com/" class="btn btn-just-icon btn-link btn-pinterest"><i class="fab fa-github"></i></i></a>
+              </div> <!--name -->
+            </div> <!-- profile -->
+          </div> <!-- col-md-6 -->
+        </div> <!-- row -->
+
+               
+                
+             
+
+              <div class="description text-center">
+                <p class="text-muted">An artist of considerable range, Chet Faker, the name taken by Melbourne-raised, Brooklyn-based Nick Murphy; writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+              </div>
+
+              <div class="row">
+              <div class="col-sm-12 mb-5 text-center">
+                  <div class="profile-tabs">
+                    <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#" role="tab" data-toggle="tab">
+                         <i class="fas fa-star"></i> PROFILE
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+
+                      <%# ----- Edit ----- %>
+                      <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
+                                Edit profile
+                              </button>
+
+                          <%= render 'edit',remote:true %>
+                            
+                      <%# ----- end current user attributes ----- %>
+
+                      <%# ----- current_user ajax info ----- %>
+                          <%= render partial:'profile',remote:true %>
+                      <%# ----- end current user attributes ----- %>
+                          
+
+                  </div> <!-- container -->
+          </div>  <!-- main -->
+      </div>  <!-- profile-content -->
+</body>
+
+
+                     
+       <style>
+
+h6{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-weight: 700;
+  font-family: "Roboto Slab", "Times New Roman", serif;
+  font-size: 1.5625rem;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  min-height: 32px;
+}
+
+</style>           
+
+
+               
+                   
+   
