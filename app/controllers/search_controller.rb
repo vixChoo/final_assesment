@@ -77,10 +77,10 @@ class SearchController < ApplicationController
       security_name = security_name
       
       
-      browser = Watir::Browser.new :chrome, opts 
-     browser.goto("https://www.monster.com.my/#{security_name}-jobs.html")
-     parsed_page = Nokogiri::HTML(browser.html)
       
+       browser = Watir::Browser.new :chrome, opts 
+      browser.goto("https://www.monster.com.my/#{security_name}-jobs.html")
+      parsed_page = Nokogiri::HTML(browser.html)
       
      jobs = parsed_page.css("div#hightlightedKeyword ul.ullilist li")[0..20] #102jobs perpages
      jobs_array = []
