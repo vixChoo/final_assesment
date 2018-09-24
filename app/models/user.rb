@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     mount_uploader :avatar, AvatarUploader
 
+    has_many :jobs
+
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :name, presence: true
     validates :email, format: { with: VALID_EMAIL_REGEX },

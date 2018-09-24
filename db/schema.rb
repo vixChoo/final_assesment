@@ -20,8 +20,10 @@ ActiveRecord::Schema.define(version: 2018_09_24_081134) do
     t.string "location"
     t.text "description"
     t.integer "price"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +42,5 @@ ActiveRecord::Schema.define(version: 2018_09_24_081134) do
     t.index ["uid"], name: "index_users_on_uid"
   end
 
+  add_foreign_key "jobs", "users"
 end
