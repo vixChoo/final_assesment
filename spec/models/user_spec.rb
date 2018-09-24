@@ -39,5 +39,42 @@ end
   
   end
 
- 
+ context 'Testing User About Regex (Sad path)' do
+
+      
+    it "email format (1)" do
+      user = User.new( name:'Mr.Sample' ,email:'sample',password:"12345679").save
+       expect(user).to eq(false)
+    end
+
+    it "email format (2)" do
+      user = User.new( name:'Mr.Sample' ,email:'sample.com',password:"12345679").save
+       expect(user).to eq(false)
+    end
+
+    it "email format (3)" do
+      user = User.new( name:'Mr.Sample' ,email:'sample@.com',password:"12345679").save
+       expect(user).to eq(false)
+    end
+  end
+
+  context 'scope tests' do
+  
+    let (:params) { {name: 'Sample', password: SecureRandom.hex(10)} }
+    before(:each) do
+      User.new(params.merge(email: 'sample@example.com')).save
+      User.new(params.merge(email: '@example.com')).save
+      User.new(params.merge(email: 'smpl@.com')).save
+      User.new(params.merge(email: 'asds')).save
+      User.new(params.merge(email: '.com')).save
+      User.new(params.merge(email: 'sample1@example.com')).save
+     end
+
+    it 'successful created user' do
+      expect(User.count).to eq(2)
+    end
+
+  end
+
+
 end
