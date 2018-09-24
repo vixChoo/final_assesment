@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" id="search_result">
+         <div class="text-muted">
+           Result 
+            </div>
+
+        <div id="search_result">
+            <%= render partial:'show',remote:true %>
+        </div>
+
+     
+                <!-- hidden form to refresh search result -->
+                <div class="form-inline" id="hiddenForm"> 
+                    <% form_with url: search_path,method: :get,remote:true, id: "myForm" do |f| %>
+                    <% f.text_field :searchword , value: params[:searchword], class: "form-control m-1"  %>
+                    <% f.submit "Search" , id: 'clickButton'%>
+                    <% end %>
+                </div>
+        </div>
+    </div>
+</div>
+ 
+ 
+
+<!-- js for autorefresh -->
+<script>
+    window.onload = function(){
+        var button = document.getElementById('clickButton');
+        setInterval(function(){
+            button.click();
+        },30000);  // this will make it click again every 30 seconds
+    };
+</script>
+
+
+                    
+                    
+
+                

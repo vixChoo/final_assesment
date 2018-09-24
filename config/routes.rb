@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-	root to: 'search#index'
-	
-	resources :users
+	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	root to: 'job#index'
 
+	get 'job/show'
+	
+	
+	
+	get 'search/index'
 	get 'search' => 'search#show' , :as => "search"
 	
+	resources :users
 	get 'users/profile' => 'users#show' , :as => "user_profile"
 	patch '/users/profile/edit' => 'users#edit' , :as => "user_edit"
 

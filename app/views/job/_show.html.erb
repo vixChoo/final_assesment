@@ -1,0 +1,25 @@
+ <% if !@jobs.any? %>
+               <strong>Please modify or broaden your search with either new keywords or changing other parameters like freshness etc. </strong>
+    <% else %>
+          
+
+        <% @jobs.each do |job| %>
+       
+        <div class="card m-1 p-3 mb-3 shadow">
+            <span><strong><%= job.name %></strong></span>
+                <div class="card-title">
+                    <small class="text-muted pull-right"> <%= job.price %></small>
+                </div>
+                <div class="">
+                    <p class="card-text">
+                        <small class="text-muted "> <%= job.location %></small>
+                            <br>
+                        <%= "#{job.description} "%>
+                    </p>
+                </div>
+            </div>
+           <% end %>
+        </div>
+        
+<% end %>
+  

@@ -43,10 +43,27 @@
       <%= link_to 'Home', root_path %> | <%= link_to 'Log In', login_path %> or <%= link_to 'Sign Up', new_user_path %> | <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
       | <%= link_to 'Sign in with Facebook', '/auth/facebook' %> || <%= link_to 'LinkedIn', '/auth/linkedin' %>
     <% end %>
-     <%= form_with url: search_path,method: :get,local:true do |f| %>
-                <%= f.text_field :searchword ,placeholder:"Search",style:"margin-left: 40vw;width: auto;" ,class:"form-control"%>
+    
+      <!-- Scraping -->
+     <% form_with url: search_path,method: :get,local:true do |f| %>
+                <% f.text_field :searchword ,placeholder:"Search",style:"margin-left: 40vw;width: auto;" ,class:"form-control"%>
             <% f.button :submit,style:"border: none;background: transparent;color:#ea4c4c;" %>
     <% end %>   
+
+      <!-- Search jobs -->
+  
+            <% if current_page?(job_show_path) %>
+                <%= form_with url: job_show_path, method: :get, remote: true do |f| %>
+                            <%= f.text_field :searchword, value: params[:searchword],placeholder:"Search",style:"margin-left: 40vw;width: auto;" ,class:"form-control" %>
+                            <% f.button :submit, name: '' ,style:"border: none;background: transparent;color:#ea4c4c;"%>
+                    <% end %>
+              <% else %>
+            <%= form_with url: job_show_path, method: :get, local: true do |f| %>
+                            <%= f.text_field :searchword, value: params[:searchword],placeholder:"Search",style:"margin-left: 40vw;width: auto;" ,class:"form-control" %>
+                            <% f.button :submit, name: '' ,style:"border: none;background: transparent;color:#ea4c4c;"%>
+                    <% end %>
+            <% end %>
+
                    <hr>
         <%# ----- Showing flash alert: ----- %>
            <% if flash.present? %>
