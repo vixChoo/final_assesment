@@ -39,9 +39,9 @@ class SessionsController < ApplicationController
       rescue
         flash[:warning] = "There was an error while trying to authenticate you..."
         redirect_to root_path
-
-        end
+      end
   end
+
   
   # def create_from_omniauth
   #     auth_hash = request.env["omniauth.auth"]
