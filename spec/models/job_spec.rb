@@ -5,8 +5,8 @@ RSpec.describe Job, type: :model do
     before(:each) do
       user = User.create(name: 'John sample', email: 'sample@example.com', password: 'password123')
     end
-    
-  
+
+     
     context'Testing Job Model About Validation (Sad path)' do
       it "is not valid without a name" do
         job = Job.new(location:'Somewhere',price:"123456789",description:"Something",user_id:'1').save

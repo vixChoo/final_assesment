@@ -47,7 +47,7 @@ gem 'omniauth-github', '~> 1.3'
 gem 'httparty' 
 gem 'nokogiri'
 gem 'watir'
-gem 'capybara', '>= 2.15'
+gem 'capybara', '~> 3.8', '>= 3.8.1'
 gem 'selenium-webdriver'
 gem 'chromedriver-helper'
 

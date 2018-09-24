@@ -302,7 +302,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   byebug
-  capybara (>= 2.15)
+  capybara (~> 3.8, >= 3.8.1)
   carrierwave (~> 1.2, >= 1.2.3)
   chromedriver-helper
   coffee-rails (~> 4.2)
