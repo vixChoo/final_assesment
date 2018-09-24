@@ -19,8 +19,8 @@ class SearchController < ApplicationController
 		    opts.merge!( options: {binary: chrome_bin})
 		  end 
        
-    browser = Watir::Browser.new :chrome, opts 
-
+      browser = Watir::Browser.new :chrome, opts 
+      browser.window.maximize
      browser.goto("http://jobs.monster.com.my/")
      parsed_page = Nokogiri::HTML(browser.html)
      
@@ -64,6 +64,7 @@ class SearchController < ApplicationController
 			##### automated browsing ######
       # browser = Watir::Browser.new(:chrome)
       # browser = Watir::Browser.new :chrome, headless: true
+
       	# herouku browser
  		opts = {
 		    headless: true
@@ -75,7 +76,7 @@ class SearchController < ApplicationController
       
       security_name = security_name
     
-    browser = Watir::Browser.new :chrome, opts 
+      browser = Watir::Browser.new :chrome, opts 
       browser.goto("https://www.monster.com.my/#{security_name}-jobs.html")
       parsed_page = Nokogiri::HTML(browser.html)
       
