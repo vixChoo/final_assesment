@@ -2,7 +2,6 @@ require 'nokogiri'
 require 'watir'
 require 'httparty'
 
-# require 'byebug'
 
 class SearchController < ApplicationController
 
@@ -11,18 +10,19 @@ class SearchController < ApplicationController
     #  browser = Watir::Browser.new(:chrome)
     #  browser = Watir::Browser.new :chrome, headless: true
     	# herouku browser
- 		opts = {
-		    headless: true
-		  }
+          opts = {
+            headless: true
+        }
 
-		  if (chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil))
-		    opts.merge!( options: {binary: chrome_bin})
-		  end 
-       
-      browser = Watir::Browser.new :chrome, opts 
-      browser.window.maximize
-     browser.goto("http://jobs.monster.com.my/")
-     parsed_page = Nokogiri::HTML(browser.html)
+        if (chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil))
+          opts.merge!( options: {binary: chrome_bin})
+        end 
+
+        browser = Watir::Browser.new :chrome, opts
+        browser.goto("http://jobs.monster.com.my/")
+        parsed_page = Nokogiri::HTML(browser.html)
+        
+  
      
      jobs = parsed_page.css("table.results tr") #20jobs perpages
      jobs_array = []
@@ -66,19 +66,21 @@ class SearchController < ApplicationController
       # browser = Watir::Browser.new :chrome, headless: true
 
       	# herouku browser
- 		opts = {
-		    headless: true
-		  }
+        opts = {
+          headless: true
+      }
 
-		  if (chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil))
-		    opts.merge!( options: {binary: chrome_bin})
-		  end 
-      
+      if (chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil))
+        opts.merge!( options: {binary: chrome_bin})
+      end 
+
       security_name = security_name
-    
+      
+      
       browser = Watir::Browser.new :chrome, opts 
-      browser.goto("https://www.monster.com.my/#{security_name}-jobs.html")
-      parsed_page = Nokogiri::HTML(browser.html)
+     browser.goto("https://www.monster.com.my/#{security_name}-jobs.html")
+     parsed_page = Nokogiri::HTML(browser.html)
+      
       
      jobs = parsed_page.css("div#hightlightedKeyword ul.ullilist li")[0..20] #102jobs perpages
      jobs_array = []
