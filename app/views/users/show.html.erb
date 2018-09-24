@@ -59,10 +59,10 @@
                       <!-- Edit Button trigger modal -->
           <div class="row">
             <div class="col-sm-10">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-remote="<%= user_edit_path(@user) %> #modal-edit-fields">Edit Profile</button>
+              <button type="button" id="edit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-remote="<%= user_edit_path(@user) %> #modal-edit-fields">Edit Profile</button>
             </div>
             <div class="col-sm-2 float-right">
-             <%= button_to "Delete Yourself" , current_user, method: :delete,
+             <%= button_to "Delete" , current_user, method: :delete,
                         data: { confirm: "You sure?" },class:"btn btn-danger" %>
             </div>
           </div>

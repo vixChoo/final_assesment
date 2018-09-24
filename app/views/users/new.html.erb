@@ -7,7 +7,7 @@
     
 <%= simple_form_for(@user,  wrapper_mappings: {
   
-    file:          :custom_file}) do |f| %>
+    file:          :custom_file},id:"form") do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
