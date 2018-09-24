@@ -9,8 +9,4 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   fields: ['id', 'first-name', 'last-name', 'location', 'picture-url', 'public-profile-url']
 
 
-  OmniAuth.config.on_failure = Proc.new do |env|
-  SessionsController.action(:auth_failure).call(env)
-end
-
 end
