@@ -10,11 +10,6 @@ class UsersController < ApplicationController
     @user = current_user
   end
     
-      
-        
-       
-     
-  
   def edit
     @user = current_user
       respond_to do |format|    
@@ -30,7 +25,7 @@ class UsersController < ApplicationController
     end
   end
       
-
+# sign up
   def create
     @user = User.new(user_params)
     

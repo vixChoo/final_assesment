@@ -4,7 +4,9 @@ class JobController < ApplicationController
   end
 
   def show
-     if params[:searchword] 
+    # params in url --> ?searchword=asdas
+        if params[:searchword] 
+      # 
       @jobs = Job.search(params[:searchword].downcase)
 
       respond_to do |format|    

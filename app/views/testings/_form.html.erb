@@ -1,0 +1,15 @@
+<%= semantic_form_for @testing do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :postcode %>
+    <%= f.input :birthday, end_year: Date.today.year, start_year: Date.today.year - 90, discard_day: true,
+                              order: [:month, :year] %>
+    <%= f.input :daylight %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

@@ -2,7 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     mount_uploader :avatar, AvatarUploader
 
-    has_many :jobs
+    has_many :jobs #,dependent: :destroy
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
     validates :name, presence: true

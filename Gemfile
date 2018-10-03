@@ -29,6 +29,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Added Gems here  
+gem 'simple_form', '~> 4.0', '>= 4.0.1'
+gem 'bootstrap_form', '~> 2.7'
+gem 'formtastic', '~> 3.1', '>= 3.1.5'
+
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
