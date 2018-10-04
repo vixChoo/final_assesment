@@ -32,8 +32,16 @@
             <%= f.input :email , class:"form-control"%>
              
   
-        
-             <%= f.input :avatar, as: :file %>
+<div class="control-group">
+  <div class="attach-set">
+    <%= f.input :real_file, input_html: { hidden: true }, label: 'Upload Attachment' %>
+      <%= f.input :avatar, as: :file %>
+    <div class="input-append">
+      <input id="file-display" class="input-large uneditable-input" type="text">
+      <a id="upload-btn" class="btn"><i class="icon-upload-alt"></i> Browse</a>
+    </div>
+  </div> <!-- /attach-set -->
+</div> <!-- /control-group -->
   
 
       <div class="modal-footer">

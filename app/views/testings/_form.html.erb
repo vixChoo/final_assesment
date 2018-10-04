@@ -1,4 +1,5 @@
 <%= semantic_form_for @testing do |f| %>
+
   <%= f.inputs do %>
     <%= f.input :name %>
     <%= f.input :price %>
@@ -7,6 +8,7 @@
     <%= f.input :birthday, end_year: Date.today.year, start_year: Date.today.year - 90, discard_day: true,
                               order: [:month, :year] %>
     <%= f.input :daylight %>
+    <%= f.input :jobs,as: :check_boxes %>
   <% end %>
 
   <%= f.actions do %>

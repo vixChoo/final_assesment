@@ -1,5 +1,7 @@
 class Job < ApplicationRecord
     belongs_to :user
+    has_many :test_jobs
+    has_many :testings, through: :test_jobs
 
      validates :name, presence: true
      validates :description, presence: true

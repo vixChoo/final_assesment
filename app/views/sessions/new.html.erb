@@ -1,4 +1,5 @@
 <%= simple_form_for(:login) do |f| %>
+ <%= f.error_notification %>
  <%= f.input :username, wrapper_html: { class: 'username' } %>
   <%= f.input :password, wrapper_html: { id: 'password' } %>
   <%= f.input :remember_me, wrapper_html: { class: 'options' } %>

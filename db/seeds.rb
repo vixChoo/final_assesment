@@ -36,3 +36,4 @@ ActiveRecord::Base.transaction do
     Job.create(job)
    end
 end
+

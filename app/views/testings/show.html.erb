@@ -30,5 +30,25 @@
   <%= @testing.daylight %>
 </p>
 
+<p>
+  <strong>Jobs name:</strong>
+  <% @testing.jobs.each_with_index do |j,index| %>
+    <%= index + 1 %>
+    <%= j.name %>
+    <% end %>
+</p>
+
+<p>
+  <strong>Job_ids:</strong>
+  <% @testing.job_ids.each do |j| %>
+  <%= j %>
+ 
+  <% end %>
+
+</p>
+
+<h6>created at :<%=time_ago_in_words(@testing.created_at, include_seconds: true )%> ago</h6>
+
+
 <%= link_to 'Edit', edit_testing_path(@testing) %> |
 <%= link_to 'Back', testings_path %>

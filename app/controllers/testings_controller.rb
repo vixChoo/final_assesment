@@ -1,6 +1,7 @@
 class TestingsController < ApplicationController
   before_action :set_testing, only: [:show, :edit, :update, :destroy]
 
+
   # GET /testings
   # GET /testings.json
   def index
@@ -10,6 +11,10 @@ class TestingsController < ApplicationController
   # GET /testings/1
   # GET /testings/1.json
   def show
+  end
+  
+  def test
+      @testings = Testing.all
   end
 
   # GET /testings/new
@@ -62,6 +67,7 @@ class TestingsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_testing
       @testing = Testing.find(params[:id])
@@ -69,6 +75,6 @@ class TestingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testing_params
-      params.require(:testing).permit(:name, :price, :description, :postcode, :birthday, :daylight)
+      params.require(:testing).permit(:name, :price, :description, :postcode, :birthday, :daylight,{job_ids: []})
     end
 end
