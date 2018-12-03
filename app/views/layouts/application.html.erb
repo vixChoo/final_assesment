@@ -52,7 +52,18 @@
 
       <!-- Search jobs -->
   
-         
+           <% if current_page?(job_show_path) %>
+                <%= form_with url: job_show_path, method: :get, remote: true do |f| %>
+                            <%= f.text_field :searchword, value: params[:searchword],placeholder:"Search",style:"margin-left: 40vw;width: auto;" ,class:"form-control" %>
+                            <% f.button :submit, name: '' ,style:"border: none;background: transparent;color:#ea4c4c;"%>
+                    <% end %>
+              <% else %>
+            <%= form_with url: job_show_path, method: :get, local: true do |f| %>
+                            <%= f.text_field :searchword, value: params[:searchword],placeholder:"Search",style:"margin-left: 40vw;width: auto;" ,class:"form-control" %>
+                            <% f.button :submit, name: '' ,style:"border: none;background: transparent;color:#ea4c4c;"%>
+                    <% end %>
+            <% end %>
+
 
                    <hr>
         <%# ----- Showing flash alert: ----- %>
